@@ -19,7 +19,7 @@ public class FindCl extends HttpServlet {
         ArrayList arr = userSevive.getObjectByS(id,style);
         if(arr != null) {
             request.setAttribute("result",arr);
-            request.getRequestDispatcher("/FindView").forward(request,response);
+            request.getRequestDispatcher("/admin/FindView.jsp").forward(request,response);
         }
 
     }
@@ -30,7 +30,7 @@ public class FindCl extends HttpServlet {
 
         String type = request.getParameter("type");
         if("gotoFindView".equals(type)) {
-            request.getRequestDispatcher("/FindView").forward(request,response);
+            request.getRequestDispatcher("/admin/FindView.jsp").forward(request,response);
         }else if("out".equals(type)) {
             Cookie[] cookies = request.getCookies();
             if(cookies != null) {
@@ -43,7 +43,7 @@ public class FindCl extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.invalidate();
                 request.setAttribute("msg","安全退出成功！");
-                request.getRequestDispatcher("/Login").forward(request,response);
+                request.getRequestDispatcher("/admin/Login.jsp").forward(request,response);
             }
 
         }

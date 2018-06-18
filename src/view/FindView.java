@@ -1,4 +1,4 @@
-package com.eachen.view;
+package view;
 
 import com.eachen.domain.User;
 

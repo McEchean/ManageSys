@@ -1,8 +1,7 @@
-package com.eachen.view;
+package view;
 
 import com.eachen.domain.User;
 import com.eachen.servive.UserSevive;
-import com.eachen.util.SqlHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
 import java.util.ArrayList;
 
 @WebServlet(name = "manageUsers",urlPatterns = "/manageUsers")
@@ -41,10 +39,6 @@ public class manageUsers extends HttpServlet {
         out.println("<img src='./1.jpg'/>欢迎" + newu.getUsername() + "登录&nbsp&nbsp <a href='/ManagerLogin/mainFrame'> 返回主页面</a>" +
                 "&nbsp&nbsp&nbsp  <a href='/ManagerLogin/FindCl?type=out'>安全退出</a><hr/>");
         out.println("<h1>管理用户</h1>");
-        //从数据库中取出用户并显示
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
 
         int pageNow = 1;
         if(request.getParameter("pageNow") != null) {
@@ -63,14 +57,6 @@ public class manageUsers extends HttpServlet {
 
             out.println("<table border=1px bordercolor=green width=500px>");
             out.println("<tr><th>用户id</th><th>用户名</th><th>email</th><th>级别</th><th>删除用户</th><th>修改用户</th></tr>");
-           /* while(resultSet.next()) {
-                out.println("<tr>" +
-                            "<td>" + resultSet.getInt(1) + "</td>" +
-                            "<td>" + resultSet.getString(2) + "</td>" +
-                            "<td>" + resultSet.getString(3) + "</td>" +
-                            "<td>" + resultSet.getInt(4) + "</td>" +
-                            "</tr>");
-            }*/
             for(int i = 0; i < list.size();i++) {
                 User u = (User) list.get(i);
                 out.println("<tr>" +
@@ -90,7 +76,6 @@ public class manageUsers extends HttpServlet {
             }
             if(pageCount > 6) {
                 if(pageNow > 2) {
-//                    out.println("<a href='/ManagerLogin/manageUsers?pageNow=1'><1></a>");
                     out.println("...");
                 }
                 if(pageNow >= 2 && pageNow <= pageCount-1) {
@@ -109,7 +94,6 @@ public class manageUsers extends HttpServlet {
 
                 if(pageNow < pageCount-1 ) {
                     out.println("...");
-//                    out.println("<a href='/ManagerLogin/manageUsers?pageNow=" + pageCount + "'><"+ pageCount +"></a>");
                 }
             }else {
                 for(int i = 1; i <= pageCount;i++) {
@@ -136,20 +120,6 @@ public class manageUsers extends HttpServlet {
             request.getRequestDispatcher("/Login").forward(request,response);
             e.printStackTrace();
 
-        }finally {
-            if(resultSet != null || preparedStatement != null || connection != null) {
-                try {
-                    resultSet.close();
-                    preparedStatement.close();
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                resultSet = null;
-                preparedStatement = null;
-                connection = null;
-            }
         }
-
     }
 }

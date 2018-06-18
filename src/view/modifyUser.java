@@ -1,8 +1,7 @@
-package com.eachen.view;
+package view;
 
 import com.eachen.domain.User;
 import com.eachen.servive.UserSevive;
-import com.eachen.util.SqlHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

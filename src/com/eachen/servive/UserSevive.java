@@ -2,9 +2,7 @@ package com.eachen.servive;
 
 import com.eachen.domain.User;
 import com.eachen.util.SqlHelper;
-import com.eachen.view.Login;
 
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

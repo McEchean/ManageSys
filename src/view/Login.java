@@ -1,4 +1,4 @@
-package com.eachen.view;
+package view;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

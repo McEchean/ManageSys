@@ -8,9 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>First</title>
   </head>
   <body>
-  $END$
+  <%
+//      response.sendRedirect("/ManagerLogin/WEB-INF/admin/Login.jsp");
+      request.getRequestDispatcher("/admin/Login.jsp").forward(request,response);
+  %>
   </body>
 </html>

@@ -28,10 +28,10 @@ public class adsmService extends HttpServlet {
                 UserSevive userSevive = new UserSevive();
                 if(userSevive.delUser(id)) {
                     request.setAttribute("msg","删除成功!");
-                    request.getRequestDispatcher("/manageUsers").forward(request,response);
+                    request.getRequestDispatcher("/manageUsersCl").forward(request,response);
                 }else {
                     request.setAttribute("msg","删除失败!");
-                    request.getRequestDispatcher("/manageUsers").forward(request,response);
+                    request.getRequestDispatcher("/manageUsersCl").forward(request,response);
                 }
                 break;
             }
@@ -54,7 +54,7 @@ public class adsmService extends HttpServlet {
                 UserSevive userSevive = new UserSevive();
                 if(userSevive.modiferUser(user)) {
                     request.setAttribute("msg","修改成功!");
-                    request.getRequestDispatcher("/manageUsers").forward(request,response);
+                    request.getRequestDispatcher("/manageUsersCl").forward(request,response);
                 }
                 break;
             }
@@ -75,7 +75,7 @@ public class adsmService extends HttpServlet {
                 UserSevive userSevive = new UserSevive();
                 if(userSevive.addUser(user)) {
                     request.setAttribute("msg","添加成功!");
-                    request.getRequestDispatcher("/manageUsers").forward(request,response);
+                    request.getRequestDispatcher("/manageUsersCl").forward(request,response);
                 }
                 break;
             }

@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Properties;
 
 @WebServlet(name = "LoginCl", urlPatterns = "/LoginCl")
-public class LoginCl extends HttpServlet {
+public class LoginCl extends HttpServlet implements Runnable {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
@@ -31,7 +31,7 @@ public class LoginCl extends HttpServlet {
 
         if("".equals(id) || "".equals(password)) {
             request.setAttribute("msg", "用户名或密码不能为空");
-            request.getRequestDispatcher("/Login").forward(request, response);
+            request.getRequestDispatcher("/admin/Login.jsp").forward(request, response);
         }
         String keep = request.getParameter("iskeepinfo");
         if("on".equals(keep)) {
@@ -59,11 +59,11 @@ public class LoginCl extends HttpServlet {
             user.setUsername((String) isuser.get("username"));
             HttpSession session = request.getSession();
             session.setAttribute("loginUser",user);
-            response.sendRedirect("/ManagerLogin/mainFrame");
-//            request.getRequestDispatcher("/mainFrame").forward(request, response);
+            response.sendRedirect("/ManagerLogin/admin/MainFrame.jsp");
+//            request.getRequestDispatcher("/WEB-INF/admin/MainFrame.jsp").forward(request, response);
         } else {
             request.setAttribute("msg", "用户名或密码错误");
-            request.getRequestDispatcher("/Login").forward(request, response);
+            request.getRequestDispatcher("/admin/Login.jsp").forward(request, response);
         }
     }
 
@@ -130,6 +130,8 @@ public class LoginCl extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+        Thread th = new Thread(this);
+        th.start();
         System.out.println("初始化我");
         Properties property = null;
         InputStream fis = null;
@@ -160,5 +162,37 @@ public class LoginCl extends HttpServlet {
             }
         }
 
+    }
+
+    public void run() {
+        String filepath = this.getServletContext().getRealPath("visit.properties");
+//        String filepath = LoginCl.class.getResource("visit.properties").getPath();
+        OutputStream fos = null;
+        while(true) {
+            System.out.println(filepath);
+            try {
+
+                fos = new FileOutputStream(new File(filepath));
+                Properties pp = new Properties();
+                String visitnum = (String) this.getServletContext().getAttribute("visitnum");
+                if(visitnum != null) {
+                    pp.setProperty("visitnum",visitnum);
+                    pp.store(fos,"time_update");
+                    Thread.sleep(1000 * 3600);
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
