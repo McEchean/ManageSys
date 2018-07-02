@@ -11,7 +11,7 @@ public class UserSevive {
 
     public boolean modiferUser(User user) {
         boolean b = true;
-        String sql = "update users set username=\"" + user.getUsername() + "\"," +
+        String sql = "update users4login set username=\"" + user.getUsername() + "\"," +
                 "email=\"" + user.getEmail() + "\"," +
                 "grade=" + user.getGrade() + "," +
                 "password=\"" + user.getPassowrd() +
@@ -28,7 +28,7 @@ public class UserSevive {
     public ArrayList getObjectByS(String id,String style) {
         ArrayList list = new ArrayList();
         if("null".equals(style)) {
-            String sql = "select * from users where id =?";
+            String sql = "select * from users4login where id =?";
             String[] params = {id};
             try {
                 ArrayList<Object[]> list1 = (ArrayList<Object[]>) SqlHelper.executeQuery(sql,params);
@@ -48,7 +48,7 @@ public class UserSevive {
             }
             return list;
         }else if("on".equals(style)) {
-            String sql = "select * from users where id like '%" +id+ "%'";
+            String sql = "select * from users4login where id like '%" +id+ "%'";
             try {
                 ArrayList<Object[]> list1 = (ArrayList<Object[]>) SqlHelper.executeQuery(sql,null);
                 if(list1 != null) {
@@ -73,7 +73,7 @@ public class UserSevive {
 
     public boolean addUser(User user) {
         boolean b = true;
-        String sql = "insert into users values ("+user.getId()+",\""+user.getUsername()+"\",\""+user.getEmail()+"\","+user.getGrade()+",\""+user.getPassowrd()+"\");";
+        String sql = "insert into users4login values ("+user.getId()+",\""+user.getUsername()+"\",\""+user.getEmail()+"\","+user.getGrade()+",\""+user.getPassowrd()+"\");";
         try {
             SqlHelper.executeUpdate(sql,null);
         }catch (Exception e) {
@@ -85,7 +85,7 @@ public class UserSevive {
 
     public boolean delUser(String id) {
         boolean b = true;
-        String sql = "delete from users where id = ?";
+        String sql = "delete from users4login where id = ?";
         String[] params = {id};
         try {
             SqlHelper.executeUpdate(sql,params);
@@ -98,7 +98,7 @@ public class UserSevive {
     //ArrayList中封装User对象
     public ArrayList getUsersByPages(int pageNow,int pageSize) {
         ArrayList arrayList = new ArrayList();
-        String sql = "select * from users limit " + (pageNow-1) * pageSize + "," + pageSize + ";";
+        String sql = "select * from users4login limit " + (pageNow-1) * pageSize + "," + pageSize + ";";
         try {
             ArrayList<Object[]> list1 = (ArrayList<Object[]>) SqlHelper.executeQuery(sql,null);
             if(list1 != null) {
@@ -138,7 +138,7 @@ public class UserSevive {
 
     public Long getPageCount(int pageSize) {
         Long rowCount = 0L;
-        String sql = "select count(*) from users;";
+        String sql = "select count(*) from users4login;";
         try {
             ArrayList<Object[]> list = SqlHelper.executeQuery(sql,null);
             rowCount = (Long) list.get(0)[0];
@@ -154,7 +154,7 @@ public class UserSevive {
     }
 
     public Object getOneObj(User user) {
-        String sql = "select * from users where id = ?";
+        String sql = "select * from users4login where id = ?";
         String[] params = {user.getId()+""};
         try {
             ArrayList<Object[]> list1 = (ArrayList<Object[]>) SqlHelper.executeQuery(sql,params);
@@ -193,7 +193,7 @@ public class UserSevive {
     public Map checkUser(User user){
         boolean b = false;
         Map<String,String> result = new HashMap<>();
-        String sql = "select * from users where id = ? and password = ?";
+        String sql = "select * from users4login where id = ? and password = ?";
         String[] parsmters = {user.getId() + "",user.getPassowrd() + ""};
         try {
             ArrayList<Object[]> list = SqlHelper.executeQuery(sql,parsmters);

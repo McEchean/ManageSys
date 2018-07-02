@@ -11,6 +11,32 @@
         </webroots>
       </configuration>
     </facet>
+    <facet type="Osmorc" name="OSGi">
+      <configuration manifestGenerationMode="Manually" manifestLocation="web/WEB-INF/lib/mysql-connector-java-8.0.11.jar/META-INF/MANIFEST.MF" jarfileLocation="ManagerLogin.jar" outputPathType="CompilerOutputPath" bndFileLocation="" bundlorFileLocation="" bundleActivator="" bundleSymbolicName="" bundleVersion="1.0.0" ignoreFilePattern="" useProjectDefaultManifestFileLocation="false" alwaysRebuildBundleJAR="false" doNotSynchronizeWithMaven="false">
+        <additionalProperties />
+        <additionalJARContents />
+      </configuration>
+    </facet>
+    <facet type="web" name="Web2">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/lib/mysql-connector-java-8.0.11.jar/com/mysql/cj/jdbc/result/ResultSetMetaData.class" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/web/WEB-INF/lib/mysql-connector-java-8.0.11.jar/com/mysql/cj/jdbc/result" relative="/WEB-INF" />
+        </webroots>
+      </configuration>
+    </facet>
+    <facet type="web" name="Web3">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/lib/mysql-connector-java-8.0.11.jar/com/mysql/cj/util/EscapeTokenizer.class" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/web/WEB-INF/lib/mysql-connector-java-8.0.11.jar/com/mysql/cj/util" relative="/WEB-INF" />
+        </webroots>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/web/WEB-INF/classes" />
